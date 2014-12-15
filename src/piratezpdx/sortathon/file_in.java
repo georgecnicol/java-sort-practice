@@ -22,10 +22,10 @@ import java.io. *;
 
 public class file_in {
 
+    protected int nxn_matrix [][];          // square matrix
+    protected int axb_matrix [][];          // solving a system of linear equations
 
     private BufferedReader in;
-
-
 
     public static void main(String[] args) {
 	// write your code here
