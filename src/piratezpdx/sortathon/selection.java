@@ -25,33 +25,27 @@ package piratezpdx.sortathon;
  *      + put the ith element in the temp variable
  *
  *****************************************************************/
+
 public class selection extends array_based {
-    // protected int [] sorting_ground; this is now passed
-    // in from main to prevent IO related code duplication
 
-    public void readin_selection(int number_of_elements){
-        // sorting_ground = new int[number_of_elements];
-        // reading the values to the array (fileIO) happens in main.
-    }
-
-    public void selection_sort(int [] sorting_ground) throws ArrayIndexOutOfBoundsException{
+    public void selection_sort() throws ArrayIndexOutOfBoundsException{
         int focus_element = 0;
         int current_element = 0;
         int comparison_number = 0;
-        int array_length = sorting_ground.length;
+        int array_length = sorting_array.length;
 
         if (array_length < 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
 
         while (focus_element < array_length){
-            comparison_number = sorting_ground[focus_element];
+            comparison_number = sorting_array[focus_element];
             current_element = focus_element +1;
             while (current_element < array_length){
-                if(comparison_number > sorting_ground[current_element]){
-                    sorting_ground[focus_element] = sorting_ground[current_element];
-                    sorting_ground[current_element] = comparison_number;
-                    comparison_number = sorting_ground[focus_element];
+                if(comparison_number > sorting_array[current_element]){
+                    sorting_array[focus_element] = sorting_array[current_element];
+                    sorting_array[current_element] = comparison_number;
+                    comparison_number = sorting_array[focus_element];
                 } // end if
                 current_element++;
             } // end inner while
@@ -59,7 +53,4 @@ public class selection extends array_based {
         } // end outer while
         return;
     } // end method
-
-    public
-
 }

@@ -22,13 +22,16 @@ import java.io. *;
 
 public class file_in {
 
+    protected String in_file;
     protected int nxn_matrix [][];          // square matrix
     protected int axb_matrix [][];          // solving a system of linear equations
 
     private BufferedReader in;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	// write your code here
+        System.out.print("Enter File Name: ");
+        System.in.read();
     }
 
 
