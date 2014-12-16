@@ -26,31 +26,34 @@ package piratezpdx.sortathon;
  *
  *****************************************************************/
 
-public class selection extends array_based {
+public class Selection extends ArrayBased {
+
+    Selection(){
+        super();
+    }
 
     public void selection_sort() throws ArrayIndexOutOfBoundsException{
         int focus_element = 0;
         int current_element = 0;
         int comparison_number = 0;
-        int array_length = sorting_array.length;
+        int array_length = sortingArray.length;
 
         if (array_length < 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
 
         while (focus_element < array_length){
-            comparison_number = sorting_array[focus_element];
+            comparison_number = sortingArray[focus_element];
             current_element = focus_element +1;
             while (current_element < array_length){
-                if(comparison_number > sorting_array[current_element]){
-                    sorting_array[focus_element] = sorting_array[current_element];
-                    sorting_array[current_element] = comparison_number;
-                    comparison_number = sorting_array[focus_element];
+                if(comparison_number > sortingArray[current_element]){
+                    sortingArray[focus_element] = sortingArray[current_element];
+                    sortingArray[current_element] = comparison_number;
+                    comparison_number = sortingArray[focus_element];
                 } // end if
                 current_element++;
             } // end inner while
             focus_element++;
         } // end outer while
-        return;
     } // end method
 }

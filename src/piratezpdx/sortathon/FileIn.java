@@ -19,36 +19,50 @@ package piratezpdx.sortathon;
 
 
 import java.io. *;
+// import java.util.Scanner;
 
-public class file_in {
+public class FileIn {
 
-    protected String in_file;
-    protected int nxn_matrix [][];          // square matrix
-    protected int axb_matrix [][];          // solving a system of linear equations
+    static String fileInName = "/home/piratezpdx/DATA/javaSort.txt";
+    // static String fileOutName = "sortOut.result";
+    // protected int size;
 
     private BufferedReader in;
+    // private Scanner scanIncoming;
+
+    // protected int nxn_matrix [][];          // square matrix
+    // protected int axb_matrix [][];          // solving a system of linear equations
+
 
     public static void main(String[] args) throws IOException {
 	// write your code here
-        System.out.print("Enter File Name: ");
-        System.in.read();
+        // System.out.print("Enter File Name: ");
+        // System.in.read();
+        int numberOfItems = 0;
+
+        FileIn incomingData = new FileIn(fileInName);
+        Selection dataToSort = new Selection();
+        dataToSort.makeArray(incomingData.getFileInName());
+        dataToSort.selection_sort();
+        numberOfItems = dataToSort.display();
+        System.out.print("There were " + numberOfItems + " sorted.");
+
+        //all done
+        incomingData.housekeeping();
     }
 
 
     // need more exceptions work here
-    public file_in(String fname) throws FileNotFoundException{
+    public FileIn(String fname) throws FileNotFoundException{
         in = new BufferedReader(new FileReader(fname));
     }
 
-    // get a line from the input file
-    // needs more exception coverage
-    public String getline()throws IOException{
-        String s;
-        s = in.readLine();
-        return s;
+    public String getFileInName(){
+        return fileInName;
     }
 
     public void housekeeping() throws IOException{
         in.close();
     }
+
 }
