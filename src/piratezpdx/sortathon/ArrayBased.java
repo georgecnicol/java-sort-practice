@@ -28,10 +28,18 @@ public class ArrayBased {
         int count = 0;
         arraySize = 0;
         scanIncoming = new Scanner(new File(filename));
+        /*while (scanIncoming.hasNextInt()){
+            System.out.println(scanIncoming.nextInt()+" ");
+            count++;
+
+        }*/
+
         while (scanIncoming.hasNextInt()){
             arraySize++;
+            scanIncoming.nextInt(); // just getting a count to size the array
         }
-        scanIncoming.reset();
+        scanIncoming.close();
+        scanIncoming = new Scanner(new File(filename));
         sortingArray = new int[arraySize];
         while (scanIncoming.hasNextInt()){
             sortingArray[count] = scanIncoming.nextInt();
@@ -54,7 +62,7 @@ public class ArrayBased {
         int loc = 0;
         while (loc < sortingArray.length) {
             if (loc == sortingArray.length - 1) {  // formatting
-                System.out.print(sortingArray[loc]);
+                System.out.println(sortingArray[loc]);
             } else {
                 System.out.print(sortingArray[loc] + ", ");
             }

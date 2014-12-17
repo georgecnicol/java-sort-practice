@@ -1,4 +1,4 @@
-package piratezpdx.sortathon;
+package piratezpdx.sortathon ;
 
 /***************************************************************
  * Created by piratezpdx on 12/11/14.
@@ -21,11 +21,10 @@ package piratezpdx.sortathon;
 import java.io. *;
 // import java.util.Scanner;
 
-public class FileIn {
+public class Main {
 
-    static String fileInName = "/home/piratezpdx/DATA/javaSort.txt";
+    static String MainName = "/home/piratezpdx/DATA/J1.txt";
     // static String fileOutName = "sortOut.result";
-    // protected int size;
 
     private BufferedReader in;
     // private Scanner scanIncoming;
@@ -33,19 +32,20 @@ public class FileIn {
     // protected int nxn_matrix [][];          // square matrix
     // protected int axb_matrix [][];          // solving a system of linear equations
 
-
+    // this will need to change to a switch statement, but for now the prototype is working
     public static void main(String[] args) throws IOException {
-	// write your code here
-        // System.out.print("Enter File Name: ");
-        // System.in.read();
         int numberOfItems = 0;
-
-        FileIn incomingData = new FileIn(fileInName);
+        int numberOfPasses = 0;
+        Main incomingData = new Main(MainName);
         Selection dataToSort = new Selection();
-        dataToSort.makeArray(incomingData.getFileInName());
-        dataToSort.selection_sort();
+        System.out.println(incomingData.getMainName()); // placeholder for indicating file run as I expand to more files
+        dataToSort.makeArray(incomingData.getMainName());
+        System.out.println("Unsorted:");
+        dataToSort.display();
+        numberOfPasses = dataToSort.selection_sort();
+        System.out.println("Sorted:");
         numberOfItems = dataToSort.display();
-        System.out.print("There were " + numberOfItems + " sorted.");
+        System.out.println("There were " + numberOfItems + " elements sorted in "+ numberOfPasses+ " rounds.");
 
         //all done
         incomingData.housekeeping();
@@ -53,12 +53,12 @@ public class FileIn {
 
 
     // need more exceptions work here
-    public FileIn(String fname) throws FileNotFoundException{
+    public Main(String fname) throws FileNotFoundException{
         in = new BufferedReader(new FileReader(fname));
     }
 
-    public String getFileInName(){
-        return fileInName;
+    public String getMainName(){
+        return MainName;
     }
 
     public void housekeeping() throws IOException{

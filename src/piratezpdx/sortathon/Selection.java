@@ -13,6 +13,7 @@ package piratezpdx.sortathon;
  *
  * big O
  *  - n squared
+ *  - specifically: n(n-1)/2
  *
  * pseudo code:
  * for i = 1 to n
@@ -32,7 +33,8 @@ public class Selection extends ArrayBased {
         super();
     }
 
-    public void selection_sort() throws ArrayIndexOutOfBoundsException{
+    public int selection_sort() throws ArrayIndexOutOfBoundsException{
+        int count = 0;
         int focus_element = 0;
         int current_element = 0;
         int comparison_number = 0;
@@ -50,10 +52,13 @@ public class Selection extends ArrayBased {
                     sortingArray[focus_element] = sortingArray[current_element];
                     sortingArray[current_element] = comparison_number;
                     comparison_number = sortingArray[focus_element];
+                    // this.display(); // watch while I sort can be cool
                 } // end if
                 current_element++;
+                count++;
             } // end inner while
             focus_element++;
         } // end outer while
+        return count;                   // n(n-1)/2
     } // end method
 }
