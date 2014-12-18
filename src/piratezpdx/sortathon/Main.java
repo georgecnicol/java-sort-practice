@@ -37,16 +37,23 @@ public class Main {
         int numberOfItems = 0;
         int numberOfPasses = 0;
         Main incomingData = new Main(MainName);
+        ArraySuite data2Sort = new ArraySuite();
+        data2Sort.copyFileData(incomingData.getMainName());
+        data2Sort.makeSortObjects();
+        data2Sort.sortThem();
+        data2Sort.compareResults();
+        data2Sort.display();
+/*
         Selection dataToSort = new Selection();
         System.out.println(incomingData.getMainName()); // placeholder for indicating file run as I expand to more files
         dataToSort.makeArray(incomingData.getMainName());
         System.out.println("Unsorted:");
         dataToSort.display();
-        numberOfPasses = dataToSort.selection_sort();
+        numberOfPasses = dataToSort.sort();
         System.out.println("Sorted:");
         numberOfItems = dataToSort.display();
         System.out.println("There were " + numberOfItems + " elements sorted in "+ numberOfPasses+ " rounds.");
-
+*/
         //all done
         incomingData.housekeeping();
     }

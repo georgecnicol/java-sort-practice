@@ -33,7 +33,7 @@ public class Selection extends ArrayBased {
         super();
     }
 
-    public int selection_sort() throws ArrayIndexOutOfBoundsException{
+    public int sort() throws ArrayIndexOutOfBoundsException{
         int count = 0;
         int focus_element = 0;
         int current_element = 0;

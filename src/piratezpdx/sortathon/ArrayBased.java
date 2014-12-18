@@ -1,8 +1,5 @@
 package piratezpdx.sortathon;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 /**
  * Created by piratezpdx on 12/15/14.
@@ -14,37 +11,15 @@ import java.util.Scanner;
 
 public class ArrayBased {
     protected int sortingArray [];         // basic array
-    protected int arraySize;               // used to set the size of the array
-    protected Scanner scanIncoming;
 
     ArrayBased(){
         sortingArray = null;
-        scanIncoming = null;
-        arraySize = 0;
     }
 
     // create the array based on contents of the file
-    public void makeArray(String filename)throws FileNotFoundException{
-        int count = 0;
-        arraySize = 0;
-        scanIncoming = new Scanner(new File(filename));
-        /*while (scanIncoming.hasNextInt()){
-            System.out.println(scanIncoming.nextInt()+" ");
-            count++;
-
-        }*/
-
-        while (scanIncoming.hasNextInt()){
-            arraySize++;
-            scanIncoming.nextInt(); // just getting a count to size the array
-        }
-        scanIncoming.close();
-        scanIncoming = new Scanner(new File(filename));
-        sortingArray = new int[arraySize];
-        while (scanIncoming.hasNextInt()){
-            sortingArray[count] = scanIncoming.nextInt();
-            count++;
-        }
+    public void copyArray(int arraySize, int [] incArray){
+        sortingArray = new int [arraySize];
+        System.arraycopy(incArray, 0 ,sortingArray, 0, arraySize);
     }
 
     // put an item in the array
@@ -71,4 +46,25 @@ public class ArrayBased {
         return sortingArray.length;
     }
 
+    // returns the first array index where the two arrays are not the same
+    // if the arrays are the same, returns a -1
+    // ideally this should be the same calling object every time for consistently
+
+    /* I chose not to use equals(array1, array2) because I wanted the particular location */
+    public int isTheSame(ArrayBased object){
+        int loc = -1;
+        int i = 0;
+
+        if (this.sortingArray.length != object.sortingArray.length) {
+            return 0;
+        }
+
+        while (i < this.sortingArray.length && loc < 0) {
+            if (this.sortingArray[i] != object.sortingArray[i]) {
+                loc = i;
+            }
+            i++;
+        }
+        return loc;
+    }
 }
