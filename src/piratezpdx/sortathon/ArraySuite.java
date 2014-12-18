@@ -13,11 +13,12 @@ import java.util.Scanner;
  * run and the answers compared within this object for consistency/ correctness.
  * 
  */
+
 public class ArraySuite {
     protected Scanner scanIncoming;
     protected int [] mainArray;
     protected Selection selectionSort;
-    //protected Insertion insertionSort
+    protected Insertion insertionSort;
     //etc...
     protected String results;
 
@@ -25,7 +26,7 @@ public class ArraySuite {
         scanIncoming = null;
         mainArray = null;
         selectionSort = new Selection();
-        //insertionSort = new Insertion();
+        insertionSort = new Insertion();
         //etc...
         results = null;
     }
@@ -53,21 +54,28 @@ public class ArraySuite {
 
     public void makeSortObjects(){
         selectionSort.copyArray(mainArray.length, mainArray);
-        //insertionSort.copyArray(arraySize, masterCopy);
+        insertionSort.copyArray(mainArray.length, mainArray);
         //etc...
     }
 
+    // probably get rid of the printed stuff eventually, but it's nice to get some
+    // output while building the thing. Maybe next part is to make an array of ArrayBased
+    // objects and iterate through that...
 
     public void sortThem(){
-        selectionSort.sort();
-        //insertionSort.sort();
+        System.out.println("Selection sort in: " + selectionSort.sort());
+        selectionSort.display();
+        System.out.println("Insertion sort in: " + insertionSort.sort());
+        insertionSort.display();
         //etc...
     }
 
+
+    // have to think of a better way other wise code will balloon.
     public boolean compareResults(){
         int outcome = 0;
         boolean flag = false;
-        outcome = selectionSort.isTheSame(selectionSort);
+        outcome = selectionSort.isTheSame(insertionSort);
         if (outcome >= 0){
             flag = true;
             results = "Selection sort varies starting at element ";
@@ -77,7 +85,6 @@ public class ArraySuite {
     }
 
     public void display(){
-        selectionSort.display();
         if (results != null) {
             System.out.println(results);
         }
