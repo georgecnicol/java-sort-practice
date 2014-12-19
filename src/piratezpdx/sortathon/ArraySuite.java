@@ -15,20 +15,30 @@ import java.util.Scanner;
  */
 
 public class ArraySuite {
+    // infrastructure
     protected Scanner scanIncoming;
+    protected String results;
     protected int [] mainArray;
+
+    // the sorting objects
     protected Selection selectionSort;
     protected Insertion insertionSort;
+    protected Quick quickSort;
     //etc...
-    protected String results;
+
 
     ArraySuite(){
+        // init infrastructure
         scanIncoming = null;
         mainArray = null;
+        results = null;
+
+        // init sorting objects
         selectionSort = new Selection();
         insertionSort = new Insertion();
+        quickSort = new Quick();
         //etc...
-        results = null;
+
     }
 
 
@@ -37,24 +47,29 @@ public class ArraySuite {
     public void copyFileData(String fileName) throws FileNotFoundException {
         int count = 0;
         int arraySize = 0;
-        scanIncoming = new Scanner(new File(fileName));
 
+        // get a count of data objects to size the array
+        scanIncoming = new Scanner(new File(fileName));
         while (scanIncoming.hasNextInt()){
             arraySize++;
-            scanIncoming.nextInt(); // just getting a count to size the array
+            scanIncoming.nextInt();
         }
         scanIncoming.close();
+
+        // fill the array
         scanIncoming = new Scanner(new File(fileName));
         mainArray = new int[arraySize];
         while (scanIncoming.hasNextInt()){
             mainArray[count] = scanIncoming.nextInt();
             count++;
         }
+        scanIncoming.close();
     }
 
     public void makeSortObjects(){
         selectionSort.copyArray(mainArray.length, mainArray);
         insertionSort.copyArray(mainArray.length, mainArray);
+        quickSort.copyArray(mainArray.length, mainArray);
         //etc...
     }
 
@@ -64,27 +79,38 @@ public class ArraySuite {
 
     public void sortThem(){
         System.out.println("Selection sort in: " + selectionSort.sort());
-        selectionSort.display();
+        //selectionSort.display();
         System.out.println("Insertion sort in: " + insertionSort.sort());
-        insertionSort.display();
+        //insertionSort.display();
+        System.out.println("Quick sort in: " + quickSort.sort());
         //etc...
     }
 
-
-    // have to think of a better way other wise code will balloon.
-    public boolean compareResults(){
-        int outcome = 0;
+    public boolean recordError(int error){
         boolean flag = false;
-        outcome = selectionSort.isTheSame(insertionSort);
-        if (outcome >= 0){
+        if (error >= 0){
             flag = true;
-            results = "Selection sort varies starting at element ";
-            results += outcome + "\n";
+            results = "Selection sort varies starting at element " + error;
         }
         return flag;
     }
 
+    // have to think of a better way other wise code will balloon?
+    // although these are similar to assert statements so.... meh?
+    public void compareResults(){
+        if (recordError(selectionSort.isTheSame(insertionSort))){
+            results += " from insertion sort\n";
+        }
+        if (recordError(selectionSort.isTheSame(quickSort))){
+            results += " from quick sort\n";
+        }
+    }
+
+
+    // show any errors or give the all clear...
     public void display(){
+        // check to see if the compareResults has put any results in the string
+        // that's where any errors would have been recorded...
         if (results != null) {
             System.out.println(results);
         }

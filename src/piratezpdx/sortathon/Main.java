@@ -23,7 +23,7 @@ import java.io. *;
 
 public class Main {
 
-    static String MainName = "/home/piratezpdx/DATA/J3.txt";
+    static String MainName = "/home/piratezpdx/DATA/J1.txt";
     // static String fileOutName = "sortOut.result";
 
     private BufferedReader in;
