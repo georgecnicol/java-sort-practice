@@ -24,6 +24,7 @@ public class ArraySuite {
     protected Selection selectionSort;
     protected Insertion insertionSort;
     protected Quick quickSort;
+    protected Merge mergeSort;
     //etc...
 
 
@@ -37,6 +38,7 @@ public class ArraySuite {
         selectionSort = new Selection();
         insertionSort = new Insertion();
         quickSort = new Quick();
+        mergeSort = new Merge();
         //etc...
 
     }
@@ -70,6 +72,7 @@ public class ArraySuite {
         selectionSort.copyArray(mainArray.length, mainArray);
         insertionSort.copyArray(mainArray.length, mainArray);
         quickSort.copyArray(mainArray.length, mainArray);
+        mergeSort.copyArray(mainArray.length, mainArray);
         //etc...
     }
 
@@ -83,6 +86,9 @@ public class ArraySuite {
         System.out.println("Insertion sort in: " + insertionSort.sort());
         //insertionSort.display();
         System.out.println("Quick sort in: " + quickSort.sort());
+        //insertionSort.display();
+        System.out.println("Merge sort in: " + mergeSort.sort());
+        // mergeSort.display();
         //etc...
     }
 
@@ -103,6 +109,9 @@ public class ArraySuite {
         }
         if (recordError(selectionSort.isTheSame(quickSort))){
             results += " from quick sort\n";
+        }
+        if (recordError(selectionSort.isTheSame(mergeSort))){
+            results += " from merge sort\n";
         }
     }
 

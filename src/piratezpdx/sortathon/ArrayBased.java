@@ -22,6 +22,14 @@ public class ArrayBased {
         System.arraycopy(incArray, 0 ,sortingArray, 0, arraySize);
     }
 
+    public int[] getSortingArray() {
+        return sortingArray;
+    }
+
+    public void setSortingArray(int[] sortingArray) {
+        this.sortingArray = sortingArray;
+    }
+
     // put an item in the array
     public void set_element(int location, int incoming_value){
         sortingArray[location] = incoming_value;

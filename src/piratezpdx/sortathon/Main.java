@@ -23,8 +23,12 @@ import java.io. *;
 
 public class Main {
 
-    static String MainName = "/home/piratezpdx/DATA/J1.txt";
+    static String MainName = "/home/piratezpdx/DATA/javasort";
     // static String fileOutName = "sortOut.result";
+
+    // 1 --> # is the extension on the filename shown above
+    // eg: javasort2
+    static int numberOfTestFiles = 3;
 
     private BufferedReader in;
     // private Scanner scanIncoming;
@@ -36,31 +40,36 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int numberOfItems = 0;
         int numberOfPasses = 0;
-        Main incomingData = new Main(MainName);
+        Main incomingData = new Main();
         ArraySuite data2Sort = new ArraySuite();
-        data2Sort.copyFileData(incomingData.getMainName());
-        data2Sort.makeSortObjects();
-        data2Sort.sortThem();
-        data2Sort.compareResults();
-        data2Sort.display();
-/*
-        Selection dataToSort = new Selection();
-        System.out.println(incomingData.getMainName()); // placeholder for indicating file run as I expand to more files
-        dataToSort.makeArray(incomingData.getMainName());
-        System.out.println("Unsorted:");
-        dataToSort.display();
-        numberOfPasses = dataToSort.sort();
-        System.out.println("Sorted:");
-        numberOfItems = dataToSort.display();
-        System.out.println("There were " + numberOfItems + " elements sorted in "+ numberOfPasses+ " rounds.");
-*/
-        //all done
-        incomingData.housekeeping();
+
+        // right now there are only three test files (numbered 1, 2, 3) and so we can just
+        // run them in a loop. Ideally, the next step is to cycle through some
+        for (int fileNum = 1; fileNum <= numberOfTestFiles; fileNum++){
+
+            // set up the filename
+            String fileName = incomingData.getMainName();
+            fileName += fileNum;
+            incomingData.makeIn(fileName);
+
+            // run the ArraySuite sorts on the filename
+            data2Sort.copyFileData(fileName);
+            data2Sort.makeSortObjects();
+            data2Sort.sortThem();
+            data2Sort.compareResults();
+            data2Sort.display();
+            incomingData.housekeeping();
+        }
     }
 
 
+    Main()
+    {
+        in = null;
+    }
+
     // need more exceptions work here
-    public Main(String fname) throws FileNotFoundException{
+    public void makeIn(String fname) throws FileNotFoundException{
         in = new BufferedReader(new FileReader(fname));
     }
 
